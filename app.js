@@ -21,6 +21,7 @@ connection.once('open', () => {
 
 app.use('/users', require('./routes/userRoutes'));
 app.use('/videos', require('./routes/videoRoute'));
+app.use('/collections', require('./routes/collectionRoutes'));
 
 if (process.env.NODE_ENV === 'production') {
     // Embedded React app here
