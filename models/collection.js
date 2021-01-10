@@ -7,11 +7,16 @@ const collectionSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a collection name'],
     },
+    color: {
+        type: String,
+        default: '#000000'
+    },
     userId: {
         type: ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    videos: [{ type: ObjectId, ref: 'Video' }]
 }, {
     timestamps: true,
 })

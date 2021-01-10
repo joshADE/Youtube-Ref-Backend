@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Video = require('../models/video');
+let Collection = require('../models/collection');
 const auth = require('../middleware/auth');
 
 
@@ -83,6 +84,11 @@ router.delete('/delete/:id', auth, async (req, res) => {
     if (!video)
         return res.status(404).json({ errors: "A video with that id for that user wasn't found."})
     
+    if (video.collectionId){
+        // remove the video from the collection
+        const updatedCollection = await Collection.findByIdAndUpdate(video.collectionId, { $pull: { videos: video._id }}, { new: true });
+        //console.log(updatedCollection);
+    }
     const deletedVideo = await Video.findByIdAndDelete(req.params.id);
     res.json({
         collectionId: deletedVideo.collectionId,
