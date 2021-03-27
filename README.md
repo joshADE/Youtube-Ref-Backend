@@ -61,6 +61,7 @@ npm start
 ```
 
 Open up http://localhost:5000/ in a browser to see the app
+Go to http://localhost:5000/videos to see a list of all the videos
 
 
 # License
